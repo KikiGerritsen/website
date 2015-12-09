@@ -1,11 +1,9 @@
 (function(){
-  'use strict';
-  angular
-  .module('Main')
-    .controller('portoController', PortoController);
-    function PortoController($scope){
-      var vm = this;
-      vm.title="Porto";
-    }
-
+'use strict';
+angular
+.module('Main')
+  .controller('portoController', ['$scope', PortoController]);
+  function PortoController($scope){
+    $scope.title="Portfolio";
+  }
 }());

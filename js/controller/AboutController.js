@@ -2,9 +2,8 @@
 "use strict";
 angular
 .module('Main')
-  .controller('aboutController', AboutController);
+  .controller('aboutController', ['$scope', AboutController]);
   function AboutController($scope){
-    var vm = this;
-    vm.title="About";
+    $scope.title="About";
   }
 }());

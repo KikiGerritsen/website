@@ -9,17 +9,17 @@ angular
       when('/', {
         templateUrl : './tabs/home.html',
         controller : 'homeController',
-        controllerAs : 'vm'
+        controllerAs : 'homeCtrl'
       }).
       when('/about', {
         templateUrl : './tabs/about.html',
         controller : 'aboutController',
-        controllerAs : 'vm'
+        controllerAs : 'aboutCtrl'
       }).
       when('/porto', {
         templateUrl : './tabs/porto.html',
         controller : 'portoController',
-        controllerAs : 'vm'
+        controllerAs : 'portoCtrl'
       }).
       otherwise({redirectTo: './tabs/first.html'});
 }]);

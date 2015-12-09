@@ -1,15 +1,30 @@
-html {
+bg {
   background: url(../images/bg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  color: white;
-  font-family: 'Josefin Slab', serif;
+  position: fixed;
+  top: 50px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.marge20{
+  margin: 20px;
 }
 
 start{
-  position: absolute;
-  top: 50px;
-  color: rgb(255, 255, 255);
+font-family: 'Josefin Slab', serif;
+  position: relative;
+}
+.bs-example{
+	margin: 20px;
+}
+
+.code{
+  padding: 10px;
+  font-family: monospace;
+  background-color: white;
 }

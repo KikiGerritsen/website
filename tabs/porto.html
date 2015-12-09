@@ -1,1 +1,182 @@
-{{vm.title}}
+<div class="porto">
+  <div class="jumbotron marge20">
+  <div class="page-header">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="page-body">
+
+  <div class="bs-example">
+    <div class="list-group">
+      <a class="list-group-item" data-toggle="collapse" data-target="#toggleDeltion">Deltion College</a>
+      <a class="list-group-item" data-toggle="collapse" data-target="#toggleHAN">Hogeschool Arnhem Nijmegen</a>
+    </div>
+    <div id="toggleDeltion" class="collapse out">
+      <br/>
+      <h2>Deltion College</h2>
+      <p>
+        The first time I got in touch with a study, I started at: <a href="http://www.deltion.nl/jongeren-onderwijs/dossier/animatie-gaming-interactieve-vormgeving/gamedeveloper">
+        Deltion College, Game Developer</a>.<br/>
+        I learned 3D modeling and minor programming.<br/>
+        My portfolio by then:<br/>
+      </p>
+      <div class="embed-responsive embed-responsive-16by9">
+        <embed id="sandboxembed" src="http://orig10.deviantart.net/4b7c/f/2011/342/c/5/portfolio_update_by_xkiek-d4fy3gq.swf" allowscriptaccess="never" width="1024" height="640" play="true" loop="true" quality="high" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+      </div>
+      <br/>
+      <div class="alert alert-info" role="alert">
+        <a href="#" class="alert-link">I don't live there anymore.</a>
+      </div>
+    </div>
+    <div id="toggleHAN" class="collapse out">
+      <br/>
+      <h2>Hogeschool Arnhem Nijmegen</h2>
+        <div class="list-group">
+          <a class="list-group-item" data-toggle="collapse" data-target="#toggleHANDbapp">Course Database</a>
+          <a class="list-group-item" data-toggle="collapse" data-target="#toggleHANiProject">iProject</a>
+          <a class="list-group-item" data-toggle="collapse" data-target="#toggleHANOoseProject">Oose Project</a>
+          <a class="list-group-item" data-toggle="collapse" data-target="#toggleHANDWAAssignment">DWA Quizzer Assignment</a>
+          <a class="list-group-item" data-toggle="collapse" data-target="#toggleHANDWAProject">DWA Project</a>
+        </div>
+        <div id="toggleHANDbapp" class="collapse out">
+          <br/>
+          <h2>DBapp</h2>
+          <p>Created: 1st year</p>
+          <div class="container code">
+            CREATE TABLE Person (<br/>
+            	Person_id		bigint			Not Null,<br/>
+            	Lastname		varchar(50)		Not Null,<br/>
+            	Firstname		varchar(20)		Not Null,<br/>
+            	Gender			char(1)			Null,<br/>
+              <br/>
+            	Constraint PK_Person Primary Key (Person_id),<br/>
+            	Constraint CK_Gender CHECK (Gender in ('M', 'V'))<br/>
+            )<br/>
+            GO<br/>
+            <br/>
+            CREATE TABLE Genre (<br/>
+            	Genre_name	varchar(50)		Not Null,<br/>
+            	Description	varchar(255)	Null,<br/>
+              <br/>
+            	Constraint PK_Genre Primary Key (Genre_name)<br/>
+            )<br/>
+            GO<br/>
+            <br/>
+            CREATE TABLE Customer (<br/>
+            	Customer_mail_address	varchar(255)	Not Null,<br/>
+            	Name					varchar(255)	Not Null,<br/>
+            	Paypal_account			varchar(255)	Not Null,<br/>
+            	Subscription_start		date			Not Null,<br/>
+            	Subscription_end		date			Null,<br/>
+            	Password				varchar(50)		Not Null,<br/>
+              <br/>
+            	Constraint PK_Customer Primary Key (Customer_mail_address),<br/>
+            	Constraint CK_Subscription_start CHECK (Subscription_start < Subscription_end)<br/>
+            )<br/>
+            GO<br/>
+            <br/>
+            /*ALTER TABLES*/<br/>
+            <br/>
+            CREATE UNIQUE INDEX IX_Paypal_account<br/>
+            	ON Customer (Paypal_account)<br/>
+            GO<br/>
+            <br/>
+            ALTER TABLE Movie<br/>
+            	ADD CONSTRAINT FK_Previous_part<br/>
+            	FOREIGN KEY (Previous_part)<br/>
+            	REFERENCES Movie (Movie_id)<br/>
+            		ON UPDATE NO ACTION<br/>
+            		ON DELETE NO ACTION<br/>
+            	GO<br/>
+              <br/>
+            ALTER TABLE Watchhistory<br/>
+            	ADD CONSTRAINT FK_Customer<br/>
+            	FOREIGN KEY (Customer_mail_address)<br/>
+            	REFERENCES Customer (Customer_mail_address)<br/>
+            		ON UPDATE CASCADE<br/>
+            		ON DELETE NO ACTION<br/>
+            	GO<br/>
+            /*<br/>
+            -- DROP TRIGGER TW_Watch_date<br/>
+            CREATE TRIGGER TR_Watch_date<br/>
+            	ON Watchhistory<br/>
+            	AFTER INSERT<br/>
+            AS<br/>
+            BEGIN<br/>
+            	DECLARE @Watch_date date<br/>
+            	DECLARE @Subscription_start date<br/>
+            	DECLARE @Subscription_end date<br/>
+            	DECLARE @Customer_mail_address varchar(255)<br/>
+              <br/>
+            	SET @Watch_date = (SELECT Watch_date FROM INSERTED)<br/>
+            	SET @Customer_mail_address = (SELECT Customer_mail_address FROM INSERTED)<br/>
+            	SET @Subscription_start = (SELECT Subscription_start FROM Customer WHERE Customer.Customer_mail_address = @Customer_mail_address)<br/>
+            	SET @Subscription_end = (SELECT Subscription_end FROM Customer WHERE Customer.Customer_mail_address = @Customer_mail_address)<br/>
+              <br/>
+            	IF (@Watch_date < (@Subscription_start))<br/>
+            	BEGIN<br/>
+            		DELETE FROM Watchhistory WHERE Watchhistory.Watch_date = @Watch_date<br/>
+            	END<br/>
+            	IF (@Watch_date > (@Subscription_end))<br/>
+            	BEGIN<br/>
+            		DELETE FROM Watchhistory WHERE Watchhistory.Watch_date = @Watch_date<br/>
+            	END<br/>
+            END<br/>
+            Go<br/>
+            */
+          </div>
+        </div>
+        <div id="toggleHANiProject" class="collapse out">
+          <div class="container">
+            <p>
+              <a target="_blank" href="https://github.com/KikiGerritsen/iProject">iProject @ git</a>
+            </p>
+          </div>
+        </div>
+        <div id="toggleHANOoseProject" class="collapse out">
+          <div class="container">
+            <p>
+              This project is created by:
+            </p>
+              <ul>
+                <li>Kiki Gerritsen</li>
+                <li>Kees Bank</li>
+                <li>Els den Engelse</li>
+                <li>Maarten v.d. Hoven</li>
+                <li>Thomas v.d. Zee</li>
+              </ul>
+              <p>
+                The assignment was to create an mobile application for organisations.<br/>
+                These organisations can use this app to post packages containing pictures. The purpose of posting these packages is selling them to the people who use this app.<br/>
+                Beside the mobile app we had to make an browser application which administrators of the organsiations could create those packages.<br/>
+                <br/>
+              <a target="_blank" href="https://github.com/KikiGerritsen/OoseProject">Oose Project @ git</a>
+            </p>
+          </div>
+        </div>
+        <div id="toggleHANDWAAssignment" class="collapse out">
+          <div class="container">
+            <p>
+              As a final assignment for the Course of DWA we had to create an application which can be used on:</p>
+              <ul>
+                <li>Mobile</li>
+                <li>Tablet</li>
+                <li>Desktop/laptop</li>
+              </ul>
+              <p>
+                This application is contains a Quiz. There are: a quizmaster, a player and a scoreboard.<br/>
+                This application is still in production. But you can check it out on:<br/>
+                <a target="_blank" href=https://dwa-quizzer.herokuapp.com/player>Website</a> and <a target="_blank" href="https://github.com/lennarddevries/quizzer">Git</a>
+              </p>
+          </div>
+        </div>
+        <div id="toggleHANDWAProject" class="collapse out">
+          <div class="container">
+            <p>
+              Currently we are creating an application to generate sockets through YAML. This project will end at the 15th of January 2016.<br/>
+              <a target="_blank" href="https://github.com/DWA-S1/SocketDesigner-SDUS">DWA Project @ git</a>
+            </p>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

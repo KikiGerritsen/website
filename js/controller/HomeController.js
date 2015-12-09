@@ -2,9 +2,9 @@
 "use strict";
 angular
 .module('Main')
-  .controller('homeController', HomeController);
+  .controller('homeController', ['$scope', HomeController]);
   function HomeController($scope){
-    var vm = this;
-    vm.title="Home";
+    $scope.title="Home";
+    $scope.content="Welcome,<br/>yo";
   }
 }());
